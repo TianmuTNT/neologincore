@@ -1,0 +1,6 @@
+name: PlayerVisibility
+version: '${project.version}'
+author: frafol
+api-version: 1.13
+description: Hide all players from all player's view.
+main: it.frafol.playervisibility.PlayerVisibility
