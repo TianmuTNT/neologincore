@@ -14,6 +14,8 @@ public enum Config {
 
     USAGE("messages.usage"),
 
+    SAVE_FILE("settings.save_after_reboot"),
+
     WORLD_ENABLED("worlds.enabled"),
 
     HIDDEN_MESSAGE("messages.hidden"),

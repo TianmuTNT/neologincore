@@ -18,7 +18,7 @@ public class UpdateCheck {
 
     public void getVersion(final Consumer<String> consumer) {
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
-            try (InputStream inputStream = new URL("https://api.spigotmc.org/legacy/update.php?resource=null")
+            try (InputStream inputStream = new URL("https://api.spigotmc.org/legacy/update.php?resource=111140")
                     .openStream(); Scanner scanner = new Scanner(inputStream)) {
                 if (scanner.hasNext()) {
                     consumer.accept(scanner.next());

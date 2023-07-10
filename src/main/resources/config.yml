@@ -7,6 +7,10 @@ settings:
   auto_update: true
   stats: true
 
+  # You can choose to have your players' hide/show mode saved even after a restart.
+  # This feature is disabled by default and requires a restart to be enabled.
+  save_after_reboot: false
+
   # PlayerVisibility's usage permission.
   usage_permission: "playervisibility.usage"
 

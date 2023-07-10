@@ -2,6 +2,7 @@ package it.frafol.playervisibility;
 
 import it.frafol.playervisibility.commands.HideCommand;
 import it.frafol.playervisibility.enums.Config;
+import it.frafol.playervisibility.enums.Data;
 import it.frafol.playervisibility.listeners.JoinListener;
 import it.frafol.playervisibility.listeners.QuitListener;
 import it.frafol.playervisibility.listeners.WorldChangeListener;
@@ -21,10 +22,12 @@ import java.nio.file.StandardCopyOption;
 public final class PlayerVisibility extends JavaPlugin {
 
     private TextFile configTextFile;
+    private TextFile dataTextFile;
     public static PlayerVisibility instance;
     private final boolean isWindows = System.getProperty("os.name").startsWith("Windows");
     private boolean updated = false;
 
+    public boolean file = false;
     public boolean hided = false;
 
     public static PlayerVisibility getInstance() {
@@ -40,6 +43,7 @@ public final class PlayerVisibility extends JavaPlugin {
         loadConfiguration();
         loadCommands();
         loadListeners();
+        loadDatabase();
         loadMetrics();
         checkForUpdatesTask();
 
@@ -85,6 +89,12 @@ public final class PlayerVisibility extends JavaPlugin {
     private void loadConfiguration() {
         getLogger().info("Loading configuration...");
         configTextFile = new TextFile(getDataFolder().toPath(), "config.yml");
+
+        if (Config.SAVE_FILE.get(Boolean.class)) {
+            dataTextFile = new TextFile(getDataFolder().toPath(), "data.yml");
+            file = true;
+        }
+
     }
 
     private void loadCommands() {
@@ -106,6 +116,22 @@ public final class PlayerVisibility extends JavaPlugin {
 
         getLogger().info("Loading metrics...");
         new Metrics(this, 19040);
+    }
+
+    private void loadDatabase() {
+
+        if (!file) {
+            return;
+        }
+
+        getLogger().info("Loading database...");
+        if (!Data.HIDDEN.get(Boolean.class)) {
+            showPlayers();
+            return;
+        }
+
+        hidePlayers();
+
     }
 
     public void hidePlayers() {
@@ -130,6 +156,12 @@ public final class PlayerVisibility extends JavaPlugin {
             }
         }
 
+        if (!file) {
+            return;
+        }
+
+        instance.getDataTextFile().getConfig().set("hidden", true);
+
     }
 
     public void showPlayers() {
@@ -144,10 +176,20 @@ public final class PlayerVisibility extends JavaPlugin {
             }
         }
 
+        if (!file) {
+            return;
+        }
+
+        instance.getDataTextFile().getConfig().set("hidden", false);
+
     }
 
     public TextFile getConfigTextFile() {
         return configTextFile;
+    }
+
+    public TextFile getDataTextFile() {
+        return dataTextFile;
     }
 
     public boolean isHided() {
@@ -172,7 +214,7 @@ public final class PlayerVisibility extends JavaPlugin {
 
         downloadFile(fileUrl, outputFile);
         updated = true;
-        getLogger().warning("CleanPing successfully updated, a restart is required.");
+        getLogger().warning("PlayerVisibility successfully updated, a restart is required.");
     }
 
     private String getFileNameFromUrl(String fileUrl) {
