@@ -30,13 +30,13 @@ public class HideCommand implements Listener {
 
         for (String alias : plugin.getConfigTextFile().getConfig().getStringList("command.aliases")) {
 
-            if (!command.startsWith(alias)) {
+            String[] words = command.split(" ");
+
+            if (!words[0].equalsIgnoreCase(alias)) {
                 continue;
             }
 
             event.setCancelled(true);
-
-            String[] words = command.split(" ");
             final Player player = event.getPlayer();
 
             if (!player.hasPermission(Config.PERMISSION.get(String.class))) {
