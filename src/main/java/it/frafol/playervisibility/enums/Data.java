@@ -14,6 +14,6 @@ public enum Data {
     }
 
     public <T> T get(Class<T> clazz) {
-        return clazz.cast(instance.getConfigTextFile().getConfig().get(path));
+        return clazz.cast(instance.getDataTextFile().getConfig().get(path));
     }
 }
