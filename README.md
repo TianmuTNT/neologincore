@@ -1,1 +1,1 @@
-Hide/Show all players in a server (excluding administrators)
+NeoCraft Login Sub-server Core

@@ -1,0 +1,4 @@
+org\astrarails\neologincore\NeoLoginCore.class
+org\astrarails\neologincore\listeners\WorldChangeListener.class
+org\astrarails\neologincore\listeners\JoinListener.class
+org\astrarails\neologincore\listeners\ChatBlockListener.class

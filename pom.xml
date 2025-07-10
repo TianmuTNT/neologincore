@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>it.frafol</groupId>
-    <artifactId>PlayerVisibility</artifactId>
+    <artifactId>NeoLoginCore</artifactId>
     <version>1.0.3</version>
     <packaging>jar</packaging>
 
-    <name>PlayerVisibility</name>
+    <name>NeoLoginCore</name>
 
     <properties>
         <java.version>1.8</java.version>
@@ -17,7 +17,7 @@
     </properties>
 
     <build>
-        <finalName>PlayerVisibility</finalName>
+        <finalName>NeoLoginCore</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -91,11 +91,6 @@
             <groupId>net.byteflux</groupId>
             <artifactId>libby-bukkit</artifactId>
             <version>1.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.tchristofferson</groupId>
-            <artifactId>ConfigUpdater</artifactId>
-            <version>2.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
